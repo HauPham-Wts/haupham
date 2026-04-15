@@ -294,14 +294,41 @@ function initContactForm() {
     return;
   }
 
+  const submitButton = contactForm.querySelector('button[type="submit"]');
   const requiredFields = Array.from(contactForm.querySelectorAll('input[required], textarea[required]'));
 
-  contactForm.addEventListener('submit', (event) => {
+  function setSubmitBusy(isBusy) {
+    if (!(submitButton instanceof HTMLButtonElement)) {
+      return;
+    }
+
+    submitButton.disabled = isBusy;
+    submitButton.setAttribute('aria-busy', String(isBusy));
+  }
+
+  function resolveEndpoint() {
+    const endpoint = contactForm.getAttribute('data-form-endpoint');
+
+    if (!endpoint) {
+      return '';
+    }
+
+    return endpoint.trim();
+  }
+
+  contactForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     if (!contactForm.checkValidity()) {
       contactForm.classList.add('is-invalid');
       setFormFeedback('Please complete all required fields with valid details.', 'is-error');
+      return;
+    }
+
+    const formEndpoint = resolveEndpoint();
+
+    if (!formEndpoint || formEndpoint.includes('your-form-id')) {
+      setFormFeedback('Configure data-form-endpoint with your Formspree URL to receive messages.', 'is-error');
       return;
     }
 
@@ -312,9 +339,31 @@ function initContactForm() {
       firstName = nameInput.value.trim().split(/\s+/)[0] || '';
     }
 
-    setFormFeedback(`Thanks${firstName ? `, ${firstName}` : ''}. Your message is queued, and I will respond soon.`, 'is-success');
-    contactForm.reset();
-    contactForm.classList.remove('is-invalid');
+    setSubmitBusy(true);
+    setFormFeedback('Sending your message...', '');
+
+    try {
+      const payload = new FormData(contactForm);
+      const response = await fetch(formEndpoint, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+        },
+        body: payload,
+      });
+
+      if (!response.ok) {
+        throw new Error('Request failed');
+      }
+
+      setFormFeedback(`Thanks${firstName ? `, ${firstName}` : ''}. Message sent successfully.`, 'is-success');
+      contactForm.reset();
+      contactForm.classList.remove('is-invalid');
+    } catch (error) {
+      setFormFeedback('Unable to send right now. Please try again or email directly.', 'is-error');
+    } finally {
+      setSubmitBusy(false);
+    }
   });
 
   requiredFields.forEach((field) => {
