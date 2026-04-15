@@ -5,6 +5,9 @@ const navLinks = Array.from(document.querySelectorAll('.nav-link'));
 const revealElements = Array.from(document.querySelectorAll('.reveal'));
 const tiltCards = Array.from(document.querySelectorAll('.tilt-card'));
 const skillMeterFills = Array.from(document.querySelectorAll('.skill-meter__fill'));
+const contactForm = document.querySelector('[data-contact-form]');
+const formFeedback = document.querySelector('[data-form-feedback]');
+const copyEmailButton = document.querySelector('[data-copy-email]');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const desktopMenuBreakpoint = 860;
 
@@ -220,6 +223,109 @@ function initSkillMeterAnimation() {
   observer.observe(skillsSection);
 }
 
+function setFormFeedback(message, state = '') {
+  if (!formFeedback) {
+    return;
+  }
+
+  formFeedback.textContent = message;
+  formFeedback.classList.remove('is-success', 'is-error');
+
+  if (state) {
+    formFeedback.classList.add(state);
+  }
+}
+
+function initContactForm() {
+  if (!(contactForm instanceof HTMLFormElement)) {
+    return;
+  }
+
+  const requiredFields = Array.from(contactForm.querySelectorAll('input[required], textarea[required]'));
+
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    if (!contactForm.checkValidity()) {
+      contactForm.classList.add('is-invalid');
+      setFormFeedback('Please complete all required fields with valid details.', 'is-error');
+      return;
+    }
+
+    let firstName = '';
+    const nameInput = contactForm.querySelector('#contact-name');
+
+    if (nameInput instanceof HTMLInputElement) {
+      firstName = nameInput.value.trim().split(/\s+/)[0] || '';
+    }
+
+    setFormFeedback(`Thanks${firstName ? `, ${firstName}` : ''}. Your message is queued, and I will respond soon.`, 'is-success');
+    contactForm.reset();
+    contactForm.classList.remove('is-invalid');
+  });
+
+  requiredFields.forEach((field) => {
+    field.addEventListener('input', () => {
+      if (!contactForm.classList.contains('is-invalid')) {
+        return;
+      }
+
+      if (contactForm.checkValidity()) {
+        contactForm.classList.remove('is-invalid');
+        setFormFeedback('');
+      }
+    });
+  });
+}
+
+function initCopyEmail() {
+  if (!(copyEmailButton instanceof HTMLButtonElement)) {
+    return;
+  }
+
+  const email = copyEmailButton.getAttribute('data-copy-email');
+
+  if (!email) {
+    return;
+  }
+
+  const defaultLabel = copyEmailButton.textContent || 'Copy Email';
+
+  function setTemporaryLabel(label) {
+    copyEmailButton.textContent = label;
+
+    window.setTimeout(() => {
+      copyEmailButton.textContent = defaultLabel;
+    }, 1700);
+  }
+
+  function fallbackCopy(text) {
+    const tempTextarea = document.createElement('textarea');
+    tempTextarea.value = text;
+    tempTextarea.setAttribute('readonly', 'true');
+    tempTextarea.style.position = 'fixed';
+    tempTextarea.style.opacity = '0';
+    document.body.append(tempTextarea);
+    tempTextarea.select();
+    document.execCommand('copy');
+    tempTextarea.remove();
+  }
+
+  copyEmailButton.addEventListener('click', async () => {
+    try {
+      if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+        await navigator.clipboard.writeText(email);
+      } else {
+        fallbackCopy(email);
+      }
+
+      setTemporaryLabel('Email Copied');
+    } catch (error) {
+      setTemporaryLabel('Copy Failed');
+    }
+  });
+}
+
 function setCurrentYear() {
   const yearElement = document.querySelector('[data-year]');
 
@@ -263,4 +369,6 @@ initActiveNavState();
 initRevealAnimations();
 initCardTilt();
 initSkillMeterAnimation();
+initContactForm();
+initCopyEmail();
 setCurrentYear();

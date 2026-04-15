@@ -332,24 +332,185 @@
       </div>
     </section>
 
-    <section class="section section-placeholder reveal" id="experience">
+    <section class="section section-experience" id="experience">
       <div class="container">
-        <h2>Experience / Education</h2>
-        <p>This section will be implemented in the next milestone.</p>
+        <div class="section-header reveal">
+          <p class="section-kicker">Experience</p>
+          <h2>Hands-on product delivery across SaaS, enterprise dashboards, and growth-facing web experiences.</h2>
+        </div>
+
+        <div class="experience-layout">
+          <article class="panel panel--experience-main reveal tilt-card">
+            <p class="panel-label">Professional Journey</p>
+            <h3>Recent roles and impact</h3>
+
+            <ol class="experience-stack">
+              <li>
+                <div class="experience-stack__head">
+                  <h4>Senior Front-End Developer</h4>
+                  <span>2024 - Present</span>
+                </div>
+                <p class="experience-company">Northstar Data Systems</p>
+                <ul class="experience-points">
+                  <li>Led migration to modular UI architecture for a multi-tenant analytics suite.</li>
+                  <li>Improved perceived performance using progressive rendering and interaction tuning.</li>
+                  <li>Mentored two mid-level developers on maintainable CSS and component strategy.</li>
+                </ul>
+              </li>
+
+              <li>
+                <div class="experience-stack__head">
+                  <h4>Front-End Developer</h4>
+                  <span>2022 - 2024</span>
+                </div>
+                <p class="experience-company">Orbit Commerce Labs</p>
+                <ul class="experience-points">
+                  <li>Built reusable dashboard modules used across 6 internal products.</li>
+                  <li>Collaborated with designers to establish a documented spacing and typography system.</li>
+                  <li>Reduced UI bug regressions through component-level QA and review standards.</li>
+                </ul>
+              </li>
+            </ol>
+          </article>
+
+          <article class="panel panel--education reveal tilt-card">
+            <p class="panel-label">Education</p>
+            <h3>Foundation and continuous learning</h3>
+
+            <ul class="education-list">
+              <li>
+                <h4>Bachelor of Software Engineering</h4>
+                <p>FPT University</p>
+                <span>2016 - 2020</span>
+              </li>
+              <li>
+                <h4>Advanced UX for Developers</h4>
+                <p>Interaction Design Foundation</p>
+                <span>2023</span>
+              </li>
+              <li>
+                <h4>Modern Front-End Performance</h4>
+                <p>Self-directed specialization</p>
+                <span>Ongoing</span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="panel panel--impact reveal tilt-card">
+            <p class="panel-label">Delivery Metrics</p>
+            <div class="impact-grid">
+              <div class="impact-item">
+                <strong>30+</strong>
+                <p>major UI releases delivered across product teams</p>
+              </div>
+              <div class="impact-item">
+                <strong>99.95%</strong>
+                <p>critical interface uptime achieved on production dashboards</p>
+              </div>
+              <div class="impact-item">
+                <strong>42%</strong>
+                <p>average reduction in onboarding friction after UX refactors</p>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="section section-placeholder reveal" id="contact">
+    <section class="section section-contact" id="contact">
       <div class="container">
-        <h2>Contact</h2>
-        <p>This section will be implemented in the next milestone.</p>
+        <div class="section-header reveal">
+          <p class="section-kicker">Contact</p>
+          <h2>Let us build an interface your users remember for the right reasons.</h2>
+        </div>
+
+        <div class="contact-layout">
+          <article class="panel panel--contact-intro reveal tilt-card">
+            <p class="panel-label">Availability</p>
+            <h3>Open for product-focused roles</h3>
+            <p>
+              I am currently available for senior front-end opportunities, UI architecture consulting, and selective freelance collaborations.
+            </p>
+
+            <div class="contact-quick-actions">
+              <button class="button button--ghost" type="button" data-copy-email="haupham.dev@gmail.com">Copy Email</button>
+              <a class="button button--ghost" href="mailto:haupham.dev@gmail.com">Email Directly</a>
+            </div>
+          </article>
+
+          <article class="panel panel--contact-social reveal tilt-card">
+            <p class="panel-label">Profiles</p>
+            <ul class="social-list">
+              <li><a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a></li>
+              <li><a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a></li>
+              <li><a href="https://dribbble.com" target="_blank" rel="noreferrer">Dribbble</a></li>
+            </ul>
+          </article>
+
+          <article class="panel panel--contact-form reveal tilt-card">
+            <p class="panel-label">Send Message</p>
+            <h3>Tell me about your product and goals</h3>
+
+            <form class="contact-form" data-contact-form novalidate>
+              <div class="form-grid">
+                <label class="form-field" for="contact-name">
+                  <span>Name</span>
+                  <input id="contact-name" name="name" type="text" autocomplete="name" required>
+                </label>
+
+                <label class="form-field" for="contact-email">
+                  <span>Email</span>
+                  <input id="contact-email" name="email" type="email" autocomplete="email" required>
+                </label>
+              </div>
+
+              <label class="form-field" for="contact-company">
+                <span>Company</span>
+                <input id="contact-company" name="company" type="text" autocomplete="organization">
+              </label>
+
+              <label class="form-field" for="contact-message">
+                <span>Project Brief</span>
+                <textarea id="contact-message" name="message" rows="5" required></textarea>
+              </label>
+
+              <div class="form-actions">
+                <button class="button button--primary" type="submit">Send Message</button>
+                <p class="form-feedback" data-form-feedback role="status" aria-live="polite"></p>
+              </div>
+            </form>
+          </article>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>© <span data-year></span> Hau Pham. Crafted with intent.</p>
+      <div class="footer-shell reveal">
+        <div class="footer-brand-block">
+          <p class="footer-signature">Hau Pham</p>
+          <p>Front-end developer crafting high-clarity, high-performance product interfaces.</p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="footer-contact-block">
+          <a href="mailto:haupham.dev@gmail.com">haupham.dev@gmail.com</a>
+          <p>Ho Chi Minh City, Vietnam</p>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© <span data-year></span> Hau Pham. Crafted with intent.</p>
+          <p>Available for remote and on-site opportunities.</p>
+        </div>
+      </div>
     </div>
   </footer>
 
