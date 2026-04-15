@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Hau Pham Portfolio Preview</title>
+  <desc id="desc">Dark premium portfolio preview graphic with title and subtitle.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#05070d"/>
+      <stop offset="55%" stop-color="#0c1424"/>
+      <stop offset="100%" stop-color="#111c31"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="85%" cy="15%" r="55%">
+      <stop offset="0%" stop-color="#84d7ff" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#84d7ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="20%" cy="75%" r="45%">
+      <stop offset="0%" stop-color="#ffd1a9" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ffd1a9" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8cdcff" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#a5f3df" stop-opacity="0.52"/>
+      <stop offset="100%" stop-color="#ffd3ae" stop-opacity="0.45"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glowA)"/>
+  <rect width="1200" height="630" fill="url(#glowB)"/>
+
+  <g transform="translate(96 96)">
+    <rect x="0" y="0" width="1008" height="438" rx="32" fill="rgba(12, 20, 34, 0.86)"/>
+    <rect x="1" y="1" width="1006" height="436" rx="31" fill="none" stroke="url(#stroke)" stroke-width="2"/>
+
+    <text x="64" y="94" fill="#9be4ff" font-family="Manrope, Arial, sans-serif" font-size="24" letter-spacing="6" text-transform="uppercase">PORTFOLIO</text>
+    <text x="64" y="188" fill="#edf3ff" font-family="Syne, Arial, sans-serif" font-size="74" font-weight="700">Hau Pham</text>
+    <text x="64" y="250" fill="#c5d1e9" font-family="Manrope, Arial, sans-serif" font-size="33">Front-End Developer / UI Engineer</text>
+
+    <text x="64" y="320" fill="#b2bfd8" font-family="Manrope, Arial, sans-serif" font-size="25">
+      Building high-clarity product interfaces with premium interaction detail.
+    </text>
+
+    <g transform="translate(64 358)">
+      <rect x="0" y="0" width="194" height="52" rx="26" fill="rgba(136, 218, 255, 0.18)"/>
+      <rect x="206" y="0" width="210" height="52" rx="26" fill="rgba(169, 255, 220, 0.14)"/>
+      <text x="34" y="34" fill="#e7f2ff" font-family="Manrope, Arial, sans-serif" font-size="21" font-weight="600">Design Systems</text>
+      <text x="242" y="34" fill="#e7f2ff" font-family="Manrope, Arial, sans-serif" font-size="21" font-weight="600">Web Performance</text>
+    </g>
+
+    <g transform="translate(792 62)">
+      <rect x="0" y="0" width="150" height="150" rx="36" fill="rgba(138, 219, 255, 0.08)"/>
+      <text x="48" y="95" fill="#9ce5ff" font-family="Syne, Arial, sans-serif" font-size="68" font-weight="700">H</text>
+    </g>
+  </g>
+</svg>
