@@ -4,6 +4,7 @@ const siteNav = document.querySelector('[data-nav]');
 const navLinks = Array.from(document.querySelectorAll('.nav-link'));
 const revealElements = Array.from(document.querySelectorAll('.reveal'));
 const tiltCards = Array.from(document.querySelectorAll('.tilt-card'));
+const skillMeterFills = Array.from(document.querySelectorAll('.skill-meter__fill'));
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const desktopMenuBreakpoint = 860;
 
@@ -179,6 +180,46 @@ function initCardTilt() {
   });
 }
 
+function initSkillMeterAnimation() {
+  if (!skillMeterFills.length) {
+    return;
+  }
+
+  const animateFills = () => {
+    skillMeterFills.forEach((fill) => fill.classList.add('is-animated'));
+  };
+
+  if (reduceMotion.matches || !('IntersectionObserver' in window)) {
+    animateFills();
+    return;
+  }
+
+  const skillsSection = document.querySelector('#skills');
+
+  if (!skillsSection) {
+    animateFills();
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries, sectionObserver) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        animateFills();
+        sectionObserver.unobserve(entry.target);
+      });
+    },
+    {
+      threshold: 0.34,
+    },
+  );
+
+  observer.observe(skillsSection);
+}
+
 function setCurrentYear() {
   const yearElement = document.querySelector('[data-year]');
 
@@ -221,4 +262,5 @@ handleAnchorNavigation();
 initActiveNavState();
 initRevealAnimations();
 initCardTilt();
+initSkillMeterAnimation();
 setCurrentYear();
